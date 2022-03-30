@@ -131,7 +131,7 @@ function searchUrl() {
 const pagenations = () => {
   let pagenationHTML = "";
   let last = 1;
-let first = 1;
+  let first = 1;
 
   let pageGroup = Math.ceil(page / 5);
   if (total_pages < 5) {
@@ -163,13 +163,11 @@ let first = 1;
     })" href="#" aria-label="Previous">
       <span aria-hidden="true">&lt;</span>
     </a>
-  </li>`;
+    </li>`;
   }
 
   for (let i = first; i <= last; i++) {
-    pagenationHTML += `<li class="page-item ${
-      page == i ? "active" : ""
-    }"><a class="page-link" onclick="moveToPage(${i})" href="#">${i}</a></li>`;
+    pagenationHTML += `<li class="page-item ${page == i ? "active" : ""}"><a class="page-link" onclick="moveToPage(${i})" href="#">${i}</a></li>`;
   }
 
   if (pageGroup != Math.ceil(total_pages / 5)) {
