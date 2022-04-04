@@ -7,10 +7,15 @@ let topic = "sport";
 let condition = "countries=KR&topic=sport&page_size=10";
 let endPoint = "latest_headlines?";
 let menus = document.querySelectorAll(".menus button");
+let sideMenus = document.querySelectorAll(".side-menu-list button")
 let searchInput = document.getElementById("search-input");
 let searchInputButton = document.getElementById("search-input-button");
 
 menus.forEach((menu) =>
+  menu.addEventListener("click", (item) => moveUrl(item))
+);
+
+sideMenus.forEach((menu) => 
   menu.addEventListener("click", (item) => moveUrl(item))
 );
 
@@ -67,7 +72,7 @@ function searchButton() {
 }
 
 function render(news) {
-  //   console.log(news);
+  console.log(news);
   let list = "";
 
   for (let i = 0; i < news.length; i++) {
@@ -99,7 +104,7 @@ function render(news) {
       />
     </div>
     <div class="col-lg-8">
-      <h2>${news[i].title}</h2>
+      <h2><a href="${news[i].link}">${news[i].title}</a></h2>
       <p>
       ${news[i].excerpt}
       </p>
@@ -117,6 +122,7 @@ function moveUrl(item) {
   //   console.log(`topic ${topic}`);
   condition = `countries=KR&topic=${topic}&page_size=10`;
   page = 1;
+  closeNav();
   getLatestNews();
 }
 
@@ -167,7 +173,9 @@ const pagenations = () => {
   }
 
   for (let i = first; i <= last; i++) {
-    pagenationHTML += `<li class="page-item ${page == i ? "active" : ""}"><a class="page-link" onclick="moveToPage(${i})" href="#">${i}</a></li>`;
+    pagenationHTML += `<li class="page-item ${
+      page == i ? "active" : ""
+    }"><a class="page-link" onclick="moveToPage(${i})" href="#">${i}</a></li>`;
   }
 
   if (pageGroup != Math.ceil(total_pages / 5)) {
