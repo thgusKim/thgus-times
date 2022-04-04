@@ -1,3 +1,3 @@
 # thgus-times
 
-thgus-times.netlify.app
+https://thgus-times.netlify.app/
